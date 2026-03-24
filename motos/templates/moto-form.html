@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Moto</title>
+    <link rel="stylesheet" href="{% static 'motos/css/style.css' %}">
+</head>
+<body>
+    <div class="container form-container">
+        <div class="card form-card">
+            <h1>Nova Moto</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <div class="form-actions">
+                    <a href="{% url 'list_motos' %}" class="btn btn-secondary">Voltar para a lista</a>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

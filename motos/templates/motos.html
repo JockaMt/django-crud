@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficina de Motos</title>
+    <link rel="stylesheet" href="{% static 'motos/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Motos na Oficina</h1>
+            <a href="{% url 'create_motos' %}" class="btn btn-primary">Adicionar Nova Moto</a>
+        </header>
+
+        <div class="card-grid">
+            {% for moto in motos %}
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ moto.brand }} {{ moto.model }}</h2>
+                        <div class="badge">{{ moto.license_plate }}</div>
+                        <p class="card-text"><strong>Dono:</strong> {{ moto.owner_name }}</p>
+                        <p class="card-text"><strong>Ano:</strong> {{ moto.year }}</p>
+                        <div class="card-description">{{ moto.service_description }}</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">R$ {{ moto.price }}</span>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <h2>Nenhuma moto cadastrada</h2>
+                    <p>Clique em "Adicionar Nova Moto" para registrar um serviço.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
